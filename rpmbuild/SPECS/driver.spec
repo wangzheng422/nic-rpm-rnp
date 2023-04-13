@@ -1,5 +1,5 @@
 Name:           rnp-nic-drv
-Version:        0.1.6.rc44_35c40ea
+Version:        0.1.6.rc12_98499a6
 Release:        1%{?dist}
 Summary:        NIC driver for your hardware
 
@@ -24,8 +24,6 @@ rm -rf ${RPM_BUILD_ROOT}
 mkdir -p ${RPM_BUILD_ROOT}/lib/modules/%{version}/updates/drivers/net/ethernet/mucse/rnp/
 #3、将要安装的驱动模块复制到对应的目录下
 cp ../SOURCES/rnp.ko ${RPM_BUILD_ROOT}/lib/modules/%{version}/updates/drivers/net/ethernet/mucse/rnp/
-mkdir -p ${RPM_BUILD_ROOT}/usr/share/hwdata/pci.ids.d/
-cp ../SOURCES/pci.ids ${RPM_BUILD_ROOT}/usr/share/hwdata/pci.ids.d/mucse.ids 
 
 
 %clean
@@ -38,7 +36,6 @@ rm -rf ${RPM_BUILD_ROOT}
 %defattr(644, root, root)
 #2、即为在系统中安装的路径
 /lib/modules/%{version}/updates/drivers/net/ethernet/mucse/rnp/rnp.ko
-/usr/share/hwdata/pci.ids.d/mucse.ids 
 
 
 %pre
@@ -51,7 +48,8 @@ rm -rf ${RPM_BUILD_ROOT}
 #1、重新生成依赖关系
 /sbin/depmod -a
 #2、重新生成initramfs文件，将新的驱动写入initramfs文件中；
-dracut --force
+# dracut --force
+
 
 %changelog
 * Tue Apr 11 2023 Your Name <your@email.com> - 1.0-1

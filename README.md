@@ -4,14 +4,20 @@
 
 这里需要先编译好驱动
 ```bash
+dnf install -y kernel-devel
+
 cd rnp-nic-drv-<version>/rnp
 ./do_build.sh
-make install
+# make install
 
 ```
 然后复制到source目录
 ```bash
-/bin/cp -f ~/rnp-nic-drv-0.1.6.rc44-35c40ea/rnp/{*.ko,pci.ids} ~/rpmbuild/SOURCES/
+/bin/rm -f ~/rpmbuild/SRPMS/*
+/bin/rm -f ~/rpmbuild/RPMS/x86_64/*
+/bin/rm -f ~/rpmbuild/SOURCES/*
+
+/bin/cp -f ~/rnp-nic-drv-0.1.6.rc12-98499a6/rnp/*.ko ~/rpmbuild/SOURCES/
 ```
 然后运行编译
 ```bash
