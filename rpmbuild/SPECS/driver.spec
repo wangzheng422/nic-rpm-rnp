@@ -8,7 +8,7 @@ URL:            https://www.example.com/your-nic-driver
 #Source0:        %{name}-%{version}.tar.gz
 
 BuildRequires:  kernel-devel
-Requires:       kernel >= 5.10.134
+Requires:       kernel = 5.10.134-5gc.git.868a8003184f.an8
 
 %description
 This package provides the NIC driver for your hardware.
