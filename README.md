@@ -4,6 +4,11 @@
 
 这里需要先编译好驱动
 ```bash
+# prepare env
+cd ~/
+dnf install -y rpm-build rpmdevtools rpmlint
+rpmdev-setuptree
+
 dnf install -y kernel-devel
 
 cd rnp-nic-drv-<version>/rnp
