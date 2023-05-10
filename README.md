@@ -32,3 +32,5 @@ rpmbuild -ba driver.spec
 ```
 
 注意，不同版本内核，要编译不同的rpm
+
+编译结果在 ```~/rpmbuild/RPMS/x86_64/*``` 里面
