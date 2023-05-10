@@ -25,7 +25,7 @@ cd rnp-nic-drv-<version>/rnp
 
 /bin/cp -f ~/rnp-nic-drv-0.1.6.rc12-98499a6/rnp/*.ko ~/rpmbuild/SOURCES/
 ```
-然后运行编译
+然后运行编译，注意需要根据自己的需要，修改 ```~/rpmbuild/SPECS/driver.spec```
 ```bash
 cd ~/rpmbuild/SPECS
 rpmbuild -ba driver.spec
