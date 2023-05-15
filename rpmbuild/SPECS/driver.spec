@@ -1,5 +1,5 @@
 Name:           rnp-nic-drv
-Version:        0.1.6.rc12_98499a6
+Version:        0.1.6.rc44_35c40ea
 Release:        1%{?dist}
 Summary:        NIC driver for your hardware
 
@@ -8,7 +8,7 @@ URL:            https://www.example.com/your-nic-driver
 #Source0:        %{name}-%{version}.tar.gz
 
 BuildRequires:  kernel-devel
-Requires:       kernel >= 4.18.0-372.52.1
+Requires:       kernel = 4.18.0-372.52.1.el8_6
 
 %description
 This package provides the NIC driver for your hardware.
@@ -24,6 +24,8 @@ rm -rf ${RPM_BUILD_ROOT}
 mkdir -p ${RPM_BUILD_ROOT}/lib/modules/%{version}/updates/drivers/net/ethernet/mucse/rnp/
 #3、将要安装的驱动模块复制到对应的目录下
 cp ../SOURCES/rnp.ko ${RPM_BUILD_ROOT}/lib/modules/%{version}/updates/drivers/net/ethernet/mucse/rnp/
+mkdir -p ${RPM_BUILD_ROOT}/usr/share/hwdata/pci.ids.d/
+cp ../SOURCES/pci.ids ${RPM_BUILD_ROOT}/usr/share/hwdata/pci.ids.d/mucse.ids 
 
 
 %clean
@@ -36,6 +38,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %defattr(644, root, root)
 #2、即为在系统中安装的路径
 /lib/modules/%{version}/updates/drivers/net/ethernet/mucse/rnp/rnp.ko
+/usr/share/hwdata/pci.ids.d/mucse.ids 
 
 
 %pre
@@ -49,7 +52,6 @@ rm -rf ${RPM_BUILD_ROOT}
 /sbin/depmod -a
 #2、重新生成initramfs文件，将新的驱动写入initramfs文件中；
 # dracut --force
-
 
 %changelog
 * Tue Apr 11 2023 Your Name <your@email.com> - 1.0-1
