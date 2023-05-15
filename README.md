@@ -6,6 +6,21 @@
 
 我们要有一台linux主机，内核版本要和目标内核版本一致。
 
+```bash
+# on ocp cluster node
+uname -a
+# Linux sno.ytl.com 4.18.0-372.52.1.el8_6.x86_64 #1 SMP Fri Mar 31 06:22:44 EDT 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+
+subscription-manager release --set=8.6
+subscription-manager repos \
+    --enable="rhel-8-for-x86_64-baseos-tus-rpms"
+
+dnf install -y kernel-modules-extra-4.18.0-372.52.1.el8_6 kernel-devel-4.18.0-372.52.1.el8_6 kernel-headers-4.18.0-372.52.1.el8_6
+
+
+```
+
 ## 编译驱动
 
 这里需要先编译好驱动
