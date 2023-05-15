@@ -38,7 +38,7 @@ cd rnp-nic-drv-<version>/rnp
 /bin/rm -f ~/rpmbuild/RPMS/x86_64/*
 /bin/rm -f ~/rpmbuild/SOURCES/*
 
-/bin/cp -f ~/rnp-nic-drv-0.1.6.rc12-98499a6/rnp/*.ko ~/rpmbuild/SOURCES/
+/bin/cp -f ~/rnp-nic-drv-0.1.6.rc44-35c40ea/rnp/{*.ko,pci.ids} ~/rpmbuild/SOURCES/
 ```
 然后运行编译，注意需要根据自己的需要，修改 ```~/rpmbuild/SPECS/driver.spec```
 ```bash
