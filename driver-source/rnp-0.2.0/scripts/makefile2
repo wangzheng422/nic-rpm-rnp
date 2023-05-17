@@ -1,0 +1,45 @@
+KERNELDIR ?= /opt/mpx
+ARCH ?= arm64
+CROSS_COMPILE ?=aarch64-linux-gnu-
+PWD := $(shell pwd)
+
+
+KBUILD_CFLAGS +=  -I./include/ -I./ -I./base -DCONFIG_RNP_FPGA  \
+             -g -O2 \
+            -Wno-unused-function -Wno-unused-variable -Wno-unused-label  \
+			-DNIC_BASE_OFF=0x0 -DPORT_ASSIGN_VERSION=1 -DQUEUES_PEER_FUN=8    -DN10 -DRNP_MAX_VF_CNT=64 -DFIX_VF_BUG   -DCONFIG_RNP_FPGA 
+obj-m := rnp.o
+rnp-objs :=   \
+		rnp_main.o \
+		rnp_common.o \
+		rnp_debugfs.o \
+		rnp_ethtool.o \
+		rnp_lib.o \
+		rnp_mbx.o \
+		rnp_pcs.o \
+		rnp_n10.o \
+		rnp_n500.o \
+		rnp_phy.o \
+		rnp_mbx_fw.o\
+		rnp_sriov.o \
+		rnp_compat.o \
+		rnp_sysfs.o \
+		rnp_ptp.o
+
+ifeq ($(RNPM_DCB_SUPPORT),y)
+	rnpm-objs += rnpm_dcb.o
+	EXTRA_CFLAGS += -DNET_FEATURE_DCB
+endif
+
+
+
+all:
+	@echo =========== Create Crypto Device Driver ===========
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) modules
+
+modules_install:
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules_install
+
+clean:
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) clean 
+

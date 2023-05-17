@@ -1,0 +1,17 @@
+# Syntax:
+# vendor  vendor_name
+#	device  device_name				<-- single tab
+#		subvendor subdevice  subsystem_name	<-- two tabs
+
+# Wuxi Micro Innovation Integrated Circuit Design Co.,Ltd.
+8848  MUCSE
+	1000  Ethernet Controller N10 Series for 10GbE or 40GbE (Dual-port)
+	1001  Ethernet Controller N400 Series for 1GbE (Dual-port)
+	1020  Ethernet Controller N10 Series for 10GbE (Quad-port)
+	1021  Ethernet Controller N400 Series for 1GbE (Quad-port)
+	1060  Ethernet Controller N10 Series for 10GbE (8-port)
+	1080  Ethernet Controller N10 Series Virtual Function
+	1081  Ethernet Controller N400 Series Virtual Function
+	8308  N500 1GbE Ethernet Controller
+	8309  N500 1GbE Ethernet Controller (Virtual Function)
+

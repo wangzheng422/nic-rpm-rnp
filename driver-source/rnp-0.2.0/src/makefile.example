@@ -1,0 +1,19 @@
+obj-$(CONFIG_MXGBE) += rnp.o
+rnp-objs :=   \
+		rnp_main.o \
+		rnp_common.o \
+		rnp_debugfs.o \
+		rnp_ethtool.o \
+		rnp_lib.o \
+		rnp_mbx.o \
+		rnp_pcs.o \
+		rnp_n10.o \
+		rnp_n500.o \
+		rnp_phy.o \
+		rnp_vu440.o \
+		rnp_mbx_fw.o\
+		rnp_sriov.o \
+		rnp_compat.o \
+		rnp_sysfs.o \
+		rnp_ptp.o
+
