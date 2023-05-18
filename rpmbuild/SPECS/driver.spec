@@ -1,14 +1,11 @@
-Name:           rnp-nic-drv
-Version:        0.1.6.rc44_35c40ea
+Name:           rnp-nic-firmware
+Version:        0.5.2.12
 Release:        1%{?dist}
 Summary:        NIC driver for your hardware
 
 License:        GPL
 URL:            https://www.example.com/your-nic-driver
 #Source0:        %{name}-%{version}.tar.gz
-
-BuildRequires:  kernel-devel
-Requires:       kernel = 4.18.0-372.52.1.el8_6
 
 %description
 This package provides the NIC driver for your hardware.
@@ -21,11 +18,9 @@ This package provides the NIC driver for your hardware.
 #1、RPM_BUILD_ROOT为此次工作的路径,以i40e驱动为例
 rm -rf ${RPM_BUILD_ROOT}
 #2、新建驱动模块的路径
-mkdir -p ${RPM_BUILD_ROOT}/lib/modules/%{version}/updates/drivers/net/ethernet/mucse/rnp/
+mkdir -p ${RPM_BUILD_ROOT}/lib/firmware
 #3、将要安装的驱动模块复制到对应的目录下
-cp ../SOURCES/rnp.ko ${RPM_BUILD_ROOT}/lib/modules/%{version}/updates/drivers/net/ethernet/mucse/rnp/
-mkdir -p ${RPM_BUILD_ROOT}/usr/share/hwdata/pci.ids.d/
-cp ../SOURCES/pci.ids ${RPM_BUILD_ROOT}/usr/share/hwdata/pci.ids.d/mucse.ids 
+cp ../SOURCES/N10G-X2-DC-2SFP+_0.5.2.12.img.bin ${RPM_BUILD_ROOT}/lib/firmware
 
 
 %clean
@@ -37,19 +32,19 @@ rm -rf ${RPM_BUILD_ROOT}
 #1、对文件进行权限设置
 %defattr(644, root, root)
 #2、即为在系统中安装的路径
-/lib/modules/%{version}/updates/drivers/net/ethernet/mucse/rnp/rnp.ko
-/usr/share/hwdata/pci.ids.d/mucse.ids 
+/lib/firmware/N10G-X2-DC-2SFP+_0.5.2.12.img.bin 
+
 
 
 %pre
 #执行install之前要执行的命令
-/sbin/depmod -a
+# /sbin/depmod -a
 
 
 %post
 #命令执行后要执行的命令
 #1、重新生成依赖关系
-/sbin/depmod -a
+# /sbin/depmod -a
 #2、重新生成initramfs文件，将新的驱动写入initramfs文件中；
 # dracut --force
 
